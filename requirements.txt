@@ -27,7 +27,7 @@ uvicorn==0.23.2
 uvloop==0.17.0
 watchfiles==0.20.0
 websockets==11.0.3
--e git+ssh://git@github.com-matheushpr9/matheushpr9/Aleatory-Words-API.git@91a374269979677e727458b811c8c5a09225bd50#egg=aleatory_words_api
+-e git+ssh://git@github.com/matheushpr9/Aleatory-Words-API.git@91a374269979677e727458b811c8c5a09225bd50#egg=aleatory_words_api
 annotated-types==0.6.0
 anyio==3.7.1
 cffi==1.16.0
