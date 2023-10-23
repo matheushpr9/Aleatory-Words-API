@@ -1,20 +1,27 @@
 from typing import Union
 from fastapi import FastAPI
-from database.Connector import Connector
+from controllers.WordController import WordController
+from controllers.CollectionController import CollectionController
 from random import randrange
 
 app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return{"Hello": "World"}
+    return{
+        "Hello": "World",
+        "message": "Welcome to Aleatory Words API! Take a look on the documentation :)"
+        }
 
-@app.get("/word/{language}")
-def get_aleatory(language:str):
-    connector = Connector("matheushpr9", "bZw23JHQYa9OrXLm")
-    word = connector.get_item_by_id(language, randrange(connector.get_collection_length(language)))
-    return word
+@app.get("/word/{language}/")
+def get_aleatory(language:str, q: str = None):
+    word_controller = WordController()
+    collection_controller = CollectionController()
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return({"item_id": item_id, "q": q})
+    word = word_controller.get_word_by_id(language, randrange(collection_controller.get_collection_length(language)))
+    data = word_controller.get_all_words_attributes(word)
+
+    if q:
+        return data[q.lower()] if q.lower() in data else data
+    
+    return data

@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
-from ..database.Connector import Connector
-from ..classes.Collection import Collection
+from app.database.Connector import Connector
+from app.classes.Collection import Collection
 
 load_dotenv()
 
@@ -10,12 +10,12 @@ class CollectionController:
         self.connection = Connector(os.getenv('DATABASE_USER'),  os.getenv('DATABASE_PASSWORD'))
 
     def collection_exists(self, collection: str):
-        return True if collection not in self.connection.database.list_collection_names() else False
+        return True if collection in self.connection.database.list_collection_names() else False
 
     def create_new_collection(self, collection: str, word: str):
         print("[Collection Controller] Creating a new collection: "+ collection)
 
-        new_collection = self.database[collection]
+        new_collection = self.connection.database[collection]
 
         r = new_collection.insert_one(word)
 
@@ -23,5 +23,5 @@ class CollectionController:
 
     
     def get_collection_length(self, collection: str) -> int:
-        return len(list(self.database[collection].find()))
+        return len(list(self.connection.database[collection].find()))
     

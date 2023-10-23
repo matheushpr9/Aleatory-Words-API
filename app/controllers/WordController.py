@@ -2,17 +2,22 @@ from dotenv import load_dotenv
 import os
 from app.database.Connector import Connector
 from app.classes.Word import Word
-from .CollectionController import CollectionController
-
+from app.controllers.CollectionController import CollectionController
 load_dotenv()
 
 class WordController:
     def __init__(self) -> None:
-        self.connection = Connector(os.getenv('DATABASE_USER'),  os.getenv('DATABASE_PASSWORD'))
+        print("[WordController] Initializing a new instance!")
+        connector = Connector(os.getenv('DATABASE_USER'),  os.getenv('DATABASE_PASSWORD'))
+        self.connector =  connector
+        self.database = connector.get_database()
+        self.collectionController = CollectionController()
+        print("[WordController] New instance constructed!")
     
-    def word_exists(self, word: str, collection: str) -> bool:
-        collection_to_query = self.connection.database[collection]
-        query = collection_to_query.find(word)
+    def word_exists(self, data: str, collection: str) -> bool:
+        collection_to_query = self.database[collection]
+        print(data)
+        query = collection_to_query.find({"word":data["word"]})
         
         for x in query:
             return True
@@ -23,15 +28,14 @@ class WordController:
         new_word = Word(word)
         data = new_word.prepare_word_to_database(collection)
 
-        collectionController = CollectionController()
-        if not collectionController.collection_exists(collection):
+        if not self.collectionController.collection_exists(collection):
             print(f"[Database] Collection {collection} not found.")
-            collectionController.create_new_collection(collection,data)
+            self.collectionController.create_new_collection(collection,data)
 
         else:
             if not self.word_exists(data, collection):
                 print(f"[Database] adding a new word: {word}!")
-                self.database[collection].insert_one(data)
+                self.connector.new_insertion(data, collection)
                 print(f"[Database] New word {word} added!")
             else:
                 print(f"[Database] The word {word} already exist in database!")
@@ -39,4 +43,13 @@ class WordController:
     def get_word_by_id(self, collection: str, id:int) -> dict:
         return list(self.database[collection].find({"_id":id}))[0]
 
-        
+    def get_all_words_attributes(self, data: dict):
+        word = Word(data["word"])
+
+        return{
+            "_id": data["_id"],
+            "lower": word.get_lower_word(),
+            "upper": word.get_upper_word(),
+            "capitalize":word.get_capitalize_word(),
+            "length": word.get_word_length()
+        }

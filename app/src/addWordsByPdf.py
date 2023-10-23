@@ -1,6 +1,6 @@
 from words_processor.Reader import Reader
 import os
-from app.controllers.WordController import WordController
+from app.controllers.WordController import WordController 
 from definitions import ROOT_DIR
 
 reader_controller = Reader()
@@ -15,8 +15,8 @@ words = []
 for word in phrase:
     words += word.split(" ")
 
-wordsTreated = [ reader_controller.treat_word(word) for word in words]
+wordsTreated = [ reader_controller.treat_word(word) for word in     words]
 
 for wordTreated in wordsTreated:
     if len(wordTreated) >=5:
-        word_controller.add_new_word("portuguese", wordTreated)
+        word_controller.add_new_word(wordTreated, "portuguese")

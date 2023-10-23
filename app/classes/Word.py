@@ -1,3 +1,4 @@
+from ..controllers.CollectionController import CollectionController
 class Word:
     def __init__(self, word: str) -> None:
         self.word = word
@@ -15,8 +16,9 @@ class Word:
         return len(self.word)
 
     def prepare_word_to_database(self, collection: str):
+        collectionController = CollectionController()
         return {
-            "_id": self.get_collection_length(collection),
+            "_id": collectionController.get_collection_length(collection),
             "word": self.get_lower_word()
             }
     
