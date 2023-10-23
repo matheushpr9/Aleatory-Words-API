@@ -28,7 +28,6 @@ In the app folder run the server:
 uvicorn main:app --reload
 ```
 
-
 ## Endpoints
 
 Currently only have a single endpoint:
