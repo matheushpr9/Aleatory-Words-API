@@ -24,9 +24,10 @@ if you know another way to fix this bug, I'd be happy to receive your pull reque
 
 In the app folder run the server:
 
-'''
+``` shell
 uvicorn main:app --reload
-'''
+```
+
 
 ## Endpoints
 
