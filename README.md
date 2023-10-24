@@ -6,7 +6,7 @@ When i developed my word-guessing game, i felt the need to create a radom word A
 
 The API is temporarily available, until I buy the domain, at the [url](https://aleatory-words-api-083a16e47323.herokuapp.com/):
 
-```http
+```web
 https://aleatory-words-api-083a16e47323.herokuapp.com/
 ```
 
@@ -40,14 +40,14 @@ uvicorn main:app --reload
 
 Currently only have a single endpoint:
 
-``` http
+``` web
 /word/{language}
 ```
 
 *Example:*
 
-```  http
-    https://aleatory-words-api-083a16e47323.herokuapp.com/word/portuguese/
+```  web
+https://aleatory-words-api-083a16e47323.herokuapp.com/word/portuguese/
 ```
 
 Which accepts as a parameter the language which the requester wants the words.
@@ -59,8 +59,8 @@ For now, we have the following language options:
 
 *Example:*
 
-``` http
-    https://aleatory-words-api-083a16e47323.herokuapp.com/word/portuguese/?q=lower
+``` web
+https://aleatory-words-api-083a16e47323.herokuapp.com/word/portuguese/?q=lower
 ```
 
 ### Query Params
