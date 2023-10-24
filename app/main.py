@@ -1,7 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
-from controllers.WordController import WordController
-from controllers.CollectionController import CollectionController
+from app.controllers.WordController import WordController
+from app.controllers.CollectionController import CollectionController
 from random import randrange
 
 app = FastAPI()
