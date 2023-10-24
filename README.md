@@ -2,6 +2,14 @@
 
 When i developed my word-guessing game, i felt the need to create a radom word API so that i could use it in my game. So i decided to make the project documented and available to everyone
 
+## *LIVE URL*
+
+The API is temporarily available, until I buy the domain, at the url:
+
+```http
+https://aleatory-words-api-083a16e47323.herokuapp.com/
+```
+
 ## **ModuleNotFoundError: No module named 'xxx'**
 
 when I was developing this project, I came across the above error when trying to execute some files, in case you're having the same problem I'll help you fix it.
@@ -36,12 +44,24 @@ Currently only have a single endpoint:
 /word/{language}
 ```
 
+*Example:*
+
+```  http
+    https://aleatory-words-api-083a16e47323.herokuapp.com/word/portuguese/
+```
+
 Which accepts as a parameter the language which the requester wants the words.
 
 For now, we have the following language options:
 
 - portuguese
 - english
+
+*Example:*
+
+``` http
+    https://aleatory-words-api-083a16e47323.herokuapp.com/word/portuguese/?q=lower
+```
 
 ### Query Params
 
