@@ -4,7 +4,7 @@ When i developed my word-guessing game, i felt the need to create a radom word A
 
 ## *LIVE URL*
 
-The API is temporarily available, until I buy the domain, at the url:
+The API is temporarily available, until I buy the domain, at the [url](https://aleatory-words-api-083a16e47323.herokuapp.com/):
 
 ```http
 https://aleatory-words-api-083a16e47323.herokuapp.com/
